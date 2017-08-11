@@ -26,13 +26,38 @@ Answer.destroy_all
 Comment.destroy_all
 Vote.destroy_all
 
-pregunta1 = Question.create(title: "Qué hago???", content: "Se totea el computador")
-
 user = User.find_by(email: 'josepaez_2@hotmail.com')
+pregunta1 = user.questions.create(title: "Qué hago???", content: "Se totea el computador")
+
 
 1.times do |i|
-  user.questions.create(title: "Qué pasa en la vida??", content: "El universo es extraño")
-  user.expenses.create(category: perro, date: Date.current - 8, concept: "Guardería de Tulia", amount: 100000)
+  # user.questions.create(title: "Blah?", content: "Blih?")
+  q = user.questions.create(title: "Bloh?", content: "Bluh?")
+  a = q.answers.create(content: "Oswaldo", user_id: user.id)
+  c =user.comments.create(content: "Rios", commentable_id: a.id, commentable_type: a.class)
+ 
+  user.votes.create(value: 1, votable_id: a.id, votable_type: a.class)
+	user.votes.create(value: 1, votable_id: q.id, votable_type: q.class)
+
+
 end
+
+user = User.find_by(email: 'jakintero@hotmail.com')
+
+1.times do |i|
+  # user.questions.create(title: "Blah?", content: "Bleh?")
+  q = user.questions.create(title: "Rápido?", content: "Ozu")
+  a = q.answers.create(content: "Pepito", user_id: user.id)
+  c =user.comments.create(content: "Aaaa", commentable_id: a.id, commentable_type: a.class)
+ 
+  user.votes.create(value: 1, votable_id: a.id, votable_type: a.class)
+	user.votes.create(value: 1, votable_id: q.id, votable_type: q.class)
+
+end
+
+
+
+
+
 
 

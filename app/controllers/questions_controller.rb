@@ -1,5 +1,7 @@
 class QuestionsController < ApplicationController
   def index
+    @questions = Question.all
+    @current_user = current_user
   end
 
   def show
