@@ -1,6 +1,9 @@
 <h1>Questions#index</h1>
 <p>Find me in app/views/questions/index.html.erb</p>
 <% u = @current_user %>
+<strong>
+	<p>Preguntas de Jakintero</p>
+</strong>
 <p>
 	Question title:
 	<%= u.questions.last.title %>
@@ -24,8 +27,9 @@
 
 
 
-
-<ul> Pregunta: <br><br>
+<strong>
+<ul> Preguntas de todos los usuarios: <br><br>
+</strong>
 	<% @questions.each do |question| %>
 
 		<p> Título:
