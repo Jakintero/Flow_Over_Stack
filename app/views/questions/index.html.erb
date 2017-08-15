@@ -1,44 +1,29 @@
+
 <h1>Questions#index</h1>
-<p>Find me in app/views/questions/index.html.erb</p>
+
 <% u = @current_user %>
-<strong>
-	<p>Preguntas de Jakintero</p>
-</strong>
-<p>
-	Question title:
-	<%= u.questions.last.title %>
-</p>
-<p>
-	Question content:
-	<%= u.questions.last.content %>
-</p>
-<p>
-	Answer:
-	<%= u.questions.last.answers.last.content %>
-</p>
-<p>
-	Comment:
-	<%= u.questions.last.answers.first.comments.last.content %>
-</p>
-<p>
-	Votes:
-	<%= u.questions.last.answers.first.votes.last.value %>
-</p>
+
+<h3>Preguntas de Jakintero</h3>
+<p>Question title:<%= u.questions.last.title %></p>
+<p>Question content:<%= u.questions.last.content %></p>
+
+<% @questions.each do |question| %>
+		<p> Título:<%= question.title %></p>
+		<p> Contenido:<%= question.content %></p>
+		<% if current_user.id == question.user.id %>
+			<%= link_to 'Borrar', question_path(question),
+														method: :delete,
+														data: { confirm: 'Are you sure?' } %>
+		<% end %>
+<% end %>
 
 
-
-<strong>
-<ul> Preguntas de todos los usuarios: <br><br>
-</strong>
-	<% @questions.each do |question| %>
-
-		<p> Título:
-			<%= question.title %>
-		</p>
-		<h4> Contenido:
-		<%= question.content %>
-		</h4>
-	<% end %>
+<ul>
+	<td><h3> Preguntas de todos los usuarios:<h3><br></td>
+			<td><% @questions.each do |question| %></td>
+					<td><p> Título:<%= question.title %></p></td>
+					<td><h4> Contenido:<%= question.content %></h4>
+			<% end %>
 </ul>
 
 <% if user_signed_in? %>
@@ -47,5 +32,3 @@
 <% end %>
 <br>
 <%= link_to "Create", new_question_path %>
-
-

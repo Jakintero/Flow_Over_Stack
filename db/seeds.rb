@@ -25,8 +25,9 @@ Question.destroy_all
 Answer.destroy_all
 Comment.destroy_all
 Vote.destroy_all
+User.destroy_all
 
-user = User.find_by(email: 'josepaez_2@hotmail.com')
+user = User.create(email: 'josepaez_2@hotmail.com', password: "hola1234")
 pregunta1 = user.questions.create(title: "Qué hago???", content: "Se totea el computador")
 
 
@@ -35,29 +36,22 @@ pregunta1 = user.questions.create(title: "Qué hago???", content: "Se totea el c
   q = user.questions.create(title: "Bloh?", content: "Bluh?")
   a = q.answers.create(content: "Oswaldo", user_id: user.id)
   c =user.comments.create(content: "Rios", commentable_id: a.id, commentable_type: a.class)
- 
+
   user.votes.create(value: 1, votable_id: a.id, votable_type: a.class)
 	user.votes.create(value: 1, votable_id: q.id, votable_type: q.class)
 
 
 end
 
-user = User.find_by(email: 'jakintero@hotmail.com')
+user = User.create(email: 'jakintero@hotmail.com', password: "hola1234")
 
 1.times do |i|
   # user.questions.create(title: "Blah?", content: "Bleh?")
   q = user.questions.create(title: "Rápido?", content: "Ozu")
   a = q.answers.create(content: "Pepito", user_id: user.id)
   c =user.comments.create(content: "Aaaa", commentable_id: a.id, commentable_type: a.class)
- 
+
   user.votes.create(value: 1, votable_id: a.id, votable_type: a.class)
 	user.votes.create(value: 1, votable_id: q.id, votable_type: q.class)
 
 end
-
-
-
-
-
-
-
